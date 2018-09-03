@@ -2,8 +2,8 @@
 
 Supports variant key management only - no other key management modes yet.
 
-Is a Java process that simulates a popular Hardware Security Module. 
-A class called `ServerProcess` starts a plain-text TCP Service process to emulate HSM Request/Response. 
+Is a Java process that simulates a financial services Hardware Security Module (HSM). 
+A class called `ServerProcess` starts a plain-text TCP service to simulate an HSM Request/Response transaction. 
 config.properties contains runtime settings and master keys
 
 Sample usage:
