@@ -8,9 +8,5 @@ public class GenerateNewInitialKeyforPINPadUsingVISADUKPT {
 			return "<2E#F90FB12DC2CD138D#1567922B#>";//TODO make this actually work
 		}
 		else return "";
-		
-		
-
 	}
-
 }
