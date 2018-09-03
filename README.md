@@ -18,7 +18,7 @@ $ Java -cp ./target/hsmsimulator-0.0.1-SNAPSHOT-standalone.jar
 ```    
 ![boot](./docs/boot.png)    
     
-```bash   
+```   
 1. User telnets to IP specified in the properties file 
 $ telnet localhost 8080
 2. User sends a command 10: <10#4##D#>  // request to generate double length key for 2TDEA TripleDES
