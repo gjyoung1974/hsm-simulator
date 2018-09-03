@@ -86,12 +86,12 @@ public class TranslatePIN {
 		byte[] b_PIN_Block_EKPEI = Hex.decode(s_PIN_Block_EKPEI);
 		// byte[] b_PIN_Block_Data = Hex.decode(s_PIN_Block_Data);
 				
-		byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to encrypt new Key
+		byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to Encrypt new Key
 	
-		//decrypt KPE I
+		//Decrypt KPE I
 		byte[] b_KPE_I = ThreeTDEA_Decrypt_2.Go(b_E_KPE_I, bMFK_v1);
 		
-		//decrypt KPE O
+		//Decrypt KPE O
 		byte[] b_KPE_O = ThreeTDEA_Decrypt_2.Go(b_E_KPE_O, bMFK_v1);
 	
 		 SecretKeySpec   sk_I_KPE = new SecretKeySpec(b_KPE_I, "DES");

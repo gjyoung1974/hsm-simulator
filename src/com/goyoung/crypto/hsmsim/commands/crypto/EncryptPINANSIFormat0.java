@@ -35,7 +35,7 @@ public class EncryptPINANSIFormat0 {
         byte[] b_E_KPE = Hex.decode(s_E_KPE);// return encrypted KEK as byte[]
 
         // plain-text MFK Variant 1
-        byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to encrypt new Key
+        byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to Encrypt new Key
 
         // decrytpted KPE + first 16 char of 16 = 3Key
         String KPE_2_key = ThreeTDEA_Decrypt.Go(b_E_KPE, bMFK_v1);
@@ -54,7 +54,7 @@ public class EncryptPINANSIFormat0 {
         // generate the clear pin block
         byte[] b_Clear_Pin_Block = JCESM.encryptPIN(s_PIN, s_PAN_1).getPINBlock(); // JCESM.calculatePINBlock(s_PIN, ANSI_PIN_Block, s_PAN_1);
 
-        // encrypt the pin block with the decrypted KPE
+        // Encrypt the pin block with the decrypted KPE
         byte[] b_E_Pin_Block = ThreeTDEA_Encrypt.Go(b_Clear_Pin_Block, b_KPE);
 
         // return Hexdecimal string version of ecrypted pinblock

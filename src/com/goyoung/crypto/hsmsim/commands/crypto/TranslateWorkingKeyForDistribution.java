@@ -63,8 +63,8 @@ public class TranslateWorkingKeyForDistribution {
 		
 		
 		//Load the MFK and Variant_N MFK
-		byte[] bMFK = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 0); // load LMK Variant 0 to decrypt inbound KEK
-		byte[] bMFK_Vn = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, Variant); // load VariantNN of LMK to encrypt new Key
+		byte[] bMFK = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 0); // load LMK Variant 0 to Decrypt inbound KEK
+		byte[] bMFK_Vn = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, Variant); // load VariantNN of LMK to Encrypt new Key
 		
 		byte[] b_dec_KEK = ThreeTDEA_Decrypt_2.Go(b_eKEK, bMFK);
 		byte[] b_dec_WorkingKey = ThreeTDEA_Decrypt_2.Go(b_eWorkingKey, bMFK_Vn);	

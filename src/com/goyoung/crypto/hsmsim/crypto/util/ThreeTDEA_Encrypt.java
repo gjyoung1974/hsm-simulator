@@ -28,7 +28,7 @@ public class ThreeTDEA_Encrypt {
 		Cipher cipher = Cipher.getInstance("TripleDES");
 		cipher.init(Cipher.ENCRYPT_MODE, desKey);
 
-		// Read bytes, decrypt, and write them out.
+		// Read bytes, Decrypt, and write them out.
 		byte[] buffer = new byte[b_Clear_Data.length];
 		int bytesRead;
 

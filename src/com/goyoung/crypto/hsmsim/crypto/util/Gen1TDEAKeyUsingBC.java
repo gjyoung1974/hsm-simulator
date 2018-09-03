@@ -35,16 +35,20 @@ public class Gen1TDEAKeyUsingBC {
 
 			CipherParameters params = new KeyParameter(key);
 
-			engine.init(true, params);//encrypt 16 0 bytes to generate KCV value
+			engine.init(true, params);//Encrypt 16 0 bytes to generate KCV value
 			
 			byte[] null_bytes_16 = new byte[16]; // same as: byte[] _iv = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; 
 			//byte[] keyhex = Hex.encode(key);
 
-			DesDEBC desdebc = new DesDEBC(key);
+			DesDEBC_Cipher desdebc = new DesDEBC_Cipher(key);
 			ByteArrayInputStream in = new ByteArrayInputStream(null_bytes_16);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-			desdebc.encrypt(in, null_bytes_16.length, out);
+
+			desdebc.Encrypt(in, out);
+
+
+
 			byte[] b_KCV = Arrays.copyOfRange(out.toByteArray(), 0, 2);
 			byte[] b_sKey = Arrays.copyOfRange(key, 0, 8);
 

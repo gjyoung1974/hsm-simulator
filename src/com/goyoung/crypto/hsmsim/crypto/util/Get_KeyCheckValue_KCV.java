@@ -18,11 +18,11 @@ public class Get_KeyCheckValue_KCV {
 
         byte[] null_bytes_16 = new byte[16]; // same as: byte[] _iv = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        DesDEBC desdebc = new DesDEBC(keyhex);
+        DesDEBC_Cipher desdebc = new DesDEBC_Cipher(keyhex);
         ByteArrayInputStream in = new ByteArrayInputStream(null_bytes_16);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        desdebc.encrypt(in, null_bytes_16.length, out);
+        desdebc.Encrypt(in, out);
         byte[] b_KCV = Arrays.copyOfRange(out.toByteArray(), 0, 2);
 
         return new String(Hex.encode(b_KCV)).toUpperCase();

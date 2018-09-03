@@ -28,15 +28,16 @@ public class Encrypt_Key_Under_MFK_Variant_N {
 
 		byte[] bPtext_KEY_In = Hex.decode(s_ptKey_In);//load the plaintext inbound key
 
-		DesDEBC desdebc = new DesDEBC(bMFK_Vn);//load DesD EBC Cipher with MFK Variant.N
+		DesDEBC_Cipher desdebc = new DesDEBC_Cipher(bMFK_Vn);//load DesD EBC Cipher with MFK Variant.N
 		ByteArrayInputStream in = new ByteArrayInputStream(bPtext_KEY_In);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
-		desdebc.encrypt(in, bPtext_KEY_In.length, out);//encrypt in-bound key under Variant.N of MFK
-		
-		byte[] bEnc_KEY_Out = Arrays.copyOfRange(out.toByteArray(), 0, bPtext_KEY_In.length);
 
-		return bEnc_KEY_Out;
+		DesDEBC_Cipher cipher = new DesDEBC_Cipher(bMFK_Vn);
+
+		cipher.Encrypt(in,out);
+		//cipher.Encrypt(in, bPtext_KEY_In.length, out);//Encrypt in-bound key under Variant.N of MFK
+
+		return Arrays.copyOfRange(out.toByteArray(), 0, bPtext_KEY_In.length);
 
 	}
 

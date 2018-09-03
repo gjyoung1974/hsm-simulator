@@ -17,7 +17,7 @@ import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.util.encoders.Hex;
 
 import com.goyoung.crypto.hsmsim.ServerProcess;
-import com.goyoung.crypto.hsmsim.crypto.util.DesDEBC;
+import com.goyoung.crypto.hsmsim.crypto.util.DesDEBC_Cipher;
 import com.goyoung.crypto.hsmsim.crypto.util.Load2Part3DESKey_No_IV;
 
 public class GetApplicationKeyCheckDigits {
@@ -34,17 +34,16 @@ public class GetApplicationKeyCheckDigits {
 
 			CipherParameters params = new KeyParameter(key);
 
-			engine.init(true, params);// encrypt 16 null bytes to generate KCV value
+			engine.init(true, params);// Encrypt 16 null bytes to generate KCV value
 			byte[] null_bytes_16 = new byte[16];
-			DesDEBC desdebc = new DesDEBC(key);
+			DesDEBC_Cipher desdebc = new DesDEBC_Cipher(key);
 			ByteArrayInputStream in = new ByteArrayInputStream(null_bytes_16);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 			try {
-				desdebc.encrypt(in, null_bytes_16.length, out);
-			} catch (DataLengthException | ShortBufferException
-					| IllegalBlockSizeException | BadPaddingException
-					| IllegalStateException | InvalidCipherTextException e) {
+				desdebc.Encrypt(in, out);
+			} catch (DataLengthException
+					| IllegalStateException e) {
 				e.printStackTrace();
 			}
 			

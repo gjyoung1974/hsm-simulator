@@ -138,10 +138,10 @@ public class GenerateVISAWorkingKey {
             byte[] b_eKEK = Hex.decode(s_E_KEK_1);//return encrypted KEK as byte[]
 
             //plain-text MFK Variant 0
-            byte[] bMFK = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 0); // load LMK Variant 0 to decrypt inbound KEK
+            byte[] bMFK = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 0); // load LMK Variant 0 to Decrypt inbound KEK
 
             //plain-text MFK Variant 1
-            byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to encrypt new Key
+            byte[] bMFK_v1 = Load2Part3DESKey_Variant_N.Go(ServerProcess.LMK0x01, 1); // load VariantNN of LMK to Encrypt new Key
 
             //decrytpted kek
             String s_KEK = ThreeTDEA_Decrypt.Go(b_eKEK, bMFK);
@@ -150,21 +150,21 @@ public class GenerateVISAWorkingKey {
              * Encrypt the new "Working Key" Variant_NN of the MFK and KEK
              *
              */
-            DesDEBC desdebc1 = new DesDEBC(bMFK_v1);// encrypt the new key under VariantNN of MKF
+            DesDEBC_Cipher desdebc1 = new DesDEBC_Cipher(bMFK_v1);// Encrypt the new key under VariantNN of MKF
             ByteArrayInputStream in1 = new ByteArrayInputStream(b_working_key);
             ByteArrayOutputStream out1 = new ByteArrayOutputStream();
-            desdebc1.encrypt(in1, b_working_key.length, out1);
+            desdebc1.Encrypt(in1, out1);
 
             //Load VariantNN of the KEK
             byte[] b_KEK = Hex.decode(s_KEK);//load KEK Hex String to byte array
             byte[] bKEKX2 = ByteBuffer.allocate(b_KEK.length + b_KEK.length).put(b_KEK).put(b_KEK).array();//Concatenate b_KEK + b_KEK double up the plaintext KEK
             byte[] bKEKX3 = ISOUtil.xor(bKEKX2, DatatypeConverter.parseHexBinary(s_Variant_Hex + s_Variant_Hex));// load VariantNN of the doubled up KEK
 
-            // encrypt working key under VariantNN of KEK
-            DesDEBC desdebc2 = new DesDEBC(bKEKX3);
+            // Encrypt working key under VariantNN of KEK
+            DesDEBC_Cipher desdebc2 = new DesDEBC_Cipher(bKEKX3);
             ByteArrayInputStream in2 = new ByteArrayInputStream(b_working_key);
             ByteArrayOutputStream out2 = new ByteArrayOutputStream();
-            desdebc2.encrypt(in2, b_working_key.length, out2);
+            desdebc2.Encrypt(in2, out2);
 
             /*
              * Prepare the result and return as string:
