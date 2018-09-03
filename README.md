@@ -2,8 +2,8 @@
 
 Supports variant key management only - no other key management modes yet.
 
-Is a Java process that simulates a popular Hardware Security Module. 
-A class called `ServerProcess` starts a plain-text TCP Service process to emulate HSM Request/Response. 
+Is a Java process that simulates a financial services Hardware Security Module (HSM). 
+A class called `ServerProcess` starts a plain-text TCP service to simulate an HSM Request/Response transaction. 
 config.properties contains runtime settings and master keys
 
 Sample usage:
@@ -18,7 +18,7 @@ $ Java -cp ./target/hsmsimulator-0.0.1-SNAPSHOT-standalone.jar
 ```    
 ![boot](./docs/boot.png)    
     
-```bash   
+```   
 1. User telnets to IP specified in the properties file 
 $ telnet localhost 8080
 2. User sends a command 10: <10#4##D#>  // request to generate double length key for 2TDEA TripleDES
