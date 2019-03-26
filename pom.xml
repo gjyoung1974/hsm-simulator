@@ -6,6 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>hsmsimulator</name>
     <description>An HSM simulator implemented in Java</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <build>
         <sourceDirectory>src</sourceDirectory>
         <resources>
@@ -18,16 +23,10 @@
         </resources>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -36,7 +35,8 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.goyoung.crypto.hsmsim.ServerProcess</mainClass>
                                 </transformer>
                             </transformers>
@@ -58,6 +58,13 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>oracle-repo</id>
+            <name>oracle repo</name>
+            <url>http://download.oracle.com/maven</url>
+        </repository>
+    </repositories>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.jpos/jpos -->
         <dependency>
