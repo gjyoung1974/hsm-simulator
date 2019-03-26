@@ -1,5 +1,11 @@
 ## HSM Simulator
 
+Snyk.io status
+[![Known Vulnerabilities](https://snyk.io/test/github/gjyoung1974/hsm-simulator/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/gjyoung1974/hsm-simulator?targetFile=pom.xml)
+
+Build status
+[![CircleCI](https://circleci.com/gh/gjyoung1974/hsm-simulator.svg?style=svg)](https://circleci.com/gh/gjyoung1974/hsm-simulator)
+
 Supports variant key management only - no other key management modes yet.
 
 Is a Java process that simulates a financial services Hardware Security Module (HSM). 
