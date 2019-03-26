@@ -14,7 +14,7 @@ $ mvn clean package
 Start the HSM Simulator as follows:
 from a command prompt:
 
-$ Java -cp ./target/hsmsimulator-0.0.1-SNAPSHOT-standalone.jar
+$ Java -cp ./target/hsmsimulator-0.0.1-SNAPSHOT-standalone.jar com.goyoung.crypto.hsmsim.ServerProcess
 ```    
 ![boot](./docs/boot.png)    
     
